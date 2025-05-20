@@ -1,6 +1,6 @@
 # Hotelreservation - Anwendungsentwicklung mit Python, FS25
 Dieses Projekt wurde im Rahmen des Moduls „Anwendungsentwicklung mit Python“ im Frühlingssemester 2025 an der FHNW umgesetzt. Ziel war es, ein funktionales Hotelreservierungssystem zu entwickeln, welches Konzepte der Python-Programmierung abbildet. Darunter objektorientierte Programmierung, Datenbankzugriffe mit SQLite sowie die Umsetzung und Dokumentation der User Stories.
-Die Arbeit erfolgte in einer vierköpfigen Projektgruppe. Neben der technischen Umsetzung stand auch das Arbeiten mit Entwicklungsumgebungen (Deepnote, GitHub) und die projektbezogene Zusammenarbeit über ein GitHub-Projektboard im Fokus. Während dem Projekt wurden wir eng durch unsere Coaches begleitet. 
+Die Arbeit erfolgte in einer vierköpfigen Projektgruppe. Neben der technischen Umsetzung stand auch das Arbeiten mit Entwicklungsumgebungen (Deepnote, GitHub) und die projektbezogene Zusammenarbeit im Fokus. Während dem Projekt wurden wir eng durch unsere Coaches begleitet. 
 
 # Autoren und Rollen im Projekt
 | Name           | Rolle im Projekt                          |
@@ -21,6 +21,16 @@ Zur Umsetzung des gesamten Projekts wurden folgende Tools verwendet:
 * Modellierung: Visual Paradigm
 * Miro Board: Sprint Planung
 
-##
+# Klassendiagramm und Modellierung
+
+# 
+
+# Main Learnings und Reflexion
+
+## Team Zusammenarbeit
+
+## Modul-bezogene Learnings
+
+
 
 
