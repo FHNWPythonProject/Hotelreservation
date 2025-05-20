@@ -1,3 +1,7 @@
-# Hotelreservation
+# Hotelreservation - Anwendungsentwicklung mit Python, FS25
 
-###Test
+## Autoren
+* Elena Pineider
+* Janis Oldani
+* Dominik Bär
+* Laurin Möck
