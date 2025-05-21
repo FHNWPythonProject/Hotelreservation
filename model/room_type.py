@@ -13,7 +13,7 @@ class RoomType:
         if not isinstance(max_guests, int) or max_guests <= 0:
             raise ValueError("max_guests must be a positive integer")
 
-        self.__type_id: int = room_type_id
+        self.__type_id: int = type_id
         self.__description: str = description
         self.__max_guests: int = max_guests
 

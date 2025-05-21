@@ -8,25 +8,14 @@ if TYPE_CHECKING:
 
 
 class Room:
-    # Konstruktor: erstellt ein neues Zimmer
-    def __init__(self, room_no: int, price_per_night: float, hotel: Hotel = None, room_type: RoomType = None):
-        # room_no muss eine ganze Zahl sein
-        if not isinstance(room_no, int):
-            raise ValueError("room_no must be an integer")
+    def __init__(self, room_id, room_number, price_per_night, max_guests, hotel_id, room_type):
+        self.room_id = room_id
+        self.room_number = room_number
+        self.price_per_night = price_per_night
+        self.max_guests = max_guests
+        self.hotel_id = hotel_id
+        self.room_type = room_type
 
-        # Preis muss float oder int und > 0 sein
-        if not isinstance(price_per_night, (int, float)) or price_per_night <= 0:
-            raise ValueError("price_per_night must be a positive number")
-
-        self.__room_no: int = room_no
-        self.__price_per_night: float = price_per_night
-        self.__hotel: Hotel = hotel
-        self.__room_type: RoomType = room_type
-        self.__bookings: list[Booking] = []  # Liste aller Buchungen für dieses Zimmer
-
-        # Verknüpfe dieses Zimmer mit dem Hotel (wenn angegeben)
-        if hotel:
-            hotel.add_room(self)
 
     def __repr__(self):
         # kurze Textdarstellung des Zimmers
