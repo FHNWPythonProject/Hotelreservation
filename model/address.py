@@ -1,7 +1,5 @@
 class Address:
     def __init__(self, address_id: int, street: str, city: str, zip_code: str):
-        # Der Konstruktor initialisiert die Adresse mit allen Feldern
-        # Die Werte werden auf Gültigkeit geprüft
         if not isinstance(address_id, int):
             raise ValueError("address_id must be an integer")
         if not street:
@@ -9,59 +7,46 @@ class Address:
         if not city:
             raise ValueError("city is required")
         if not zip_code:
-            raise ValueError("zip is required")
+            raise ValueError("zip_code is required")
 
-        # Private Attribute zur Kapselung der Daten
         self.__address_id = address_id
         self.__street = street
         self.__city = city
         self.__zip_code = zip_code
 
     def __repr__(self):
-        # Gibt eine lesbare Darstellung der Adresse zurück (z.B. für print())
         return f"Address(id={self.__address_id}, street={self.__street}, city={self.__city}, zip_code={self.__zip_code})"
 
-    # ===================================================
-    # Getter für address_id (nur lesbar, keine Änderung erlaubt)
     @property
     def address_id(self) -> int:
         return self.__address_id
 
-    # ===================================================
-    # Getter und Setter für street
     @property
     def street(self) -> str:
         return self.__street
 
     @street.setter
     def street(self, street: str):
-        # Setter prüft, ob der neue Straßenname gültig ist
         if not street:
             raise ValueError("street cannot be empty")
         self.__street = street
 
-    # ===================================================
-    # Getter und Setter für city
     @property
     def city(self) -> str:
         return self.__city
 
     @city.setter
     def city(self, city: str):
-        # Setter prüft, ob der neue Stadtname gültig ist
         if not city:
             raise ValueError("city cannot be empty")
         self.__city = city
 
-    # ===================================================
-    # Getter und Setter für zip (Postleitzahl)
     @property
-    def zip(self) -> str:
+    def zip_code(self) -> str:  # ✅ Richtiger Property-Name!
         return self.__zip_code
 
-    @zip.setter
-    def zip(self, zip_code: str):
-        # Setter prüft, ob die neue PLZ gültig ist
+    @zip_code.setter
+    def zip_code(self, zip_code: str):  # ✅ ebenfalls konsistent
         if not zip_code:
-            raise ValueError("zip cannot be empty")
+            raise ValueError("zip_code cannot be empty")
         self.__zip_code = zip_code
