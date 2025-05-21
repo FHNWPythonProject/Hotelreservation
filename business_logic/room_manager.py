@@ -5,7 +5,7 @@ from datetime import date
 
 class RoomManager:
     def __init__(self):
-        self.__room_dal = data_access.RoomDAL()
+        self.__room_dal = RoomDAL()
 
     def get_rooms_cheaper_than(self, max_price: float) -> list[Room]:
         # Gibt alle Zimmer zurück, deren Preis unterhalb des Limits liegt

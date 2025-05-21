@@ -1,5 +1,5 @@
 class Address:
-    def __init__(self, address_id: int, street: str, city: str, zip_code: str):
+    def __init__(self, address_id: int, street: str, city: str, zipcode: str):
         # Der Konstruktor initialisiert die Adresse mit allen Feldern
         # Die Werte werden auf Gültigkeit geprüft
         if not isinstance(address_id, int):

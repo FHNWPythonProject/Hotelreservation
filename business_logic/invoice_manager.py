@@ -5,7 +5,7 @@ from model.invoice import Invoice
 
 class InvoiceManager:
     def __init__(self):
-        self.__invoice_dal = data_access.InvoiceDAL()
+        self.__invoice_dal = InvoiceDAL()
 
     def generate_invoice_for_booking(self, total_amount: float) -> Invoice:
         # Erstellt eine neue Rechnung mit dem übergebenen Gesamtbetrag und dem heutigen Ausstellungsdatum. Gibt das erstellte Invoice-Objekt zurück.

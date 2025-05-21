@@ -1,11 +1,10 @@
 import pandas as pd
 from data_access.hotel_dal import HotelDAL
-
 from model.hotel import Hotel
 
 class HotelManager:
     def __init__(self):
-        self.__hotel_dal = data_access.HotelDAL()
+        self.__hotel_dal = HotelDAL()
 
     def read_all_hotels_as_df(self) -> pd.DataFrame:
         # Liefert alle Hotels aus der Datenbank als Pandas DataFrame zurück, geeignet für Anzeige, Filterung oder Weiterverarbeitung.

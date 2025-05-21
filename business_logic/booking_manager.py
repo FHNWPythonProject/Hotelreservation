@@ -1,5 +1,5 @@
 from datetime import datetime
-from data_access import booking_dal
+from data_access.booking_dal import BookingDAL
 from model import Booking
 
 class BookingManager:
