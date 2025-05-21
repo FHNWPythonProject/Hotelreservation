@@ -1,5 +1,5 @@
 class Address:
-    def __init__(self, address_id: int, street: str, city: str, zipcode: str):
+    def __init__(self, address_id: int, street: str, city: str, zip_code: str):
         # Der Konstruktor initialisiert die Adresse mit allen Feldern
         # Die Werte werden auf Gültigkeit geprüft
         if not isinstance(address_id, int):
@@ -15,11 +15,11 @@ class Address:
         self.__address_id = address_id
         self.__street = street
         self.__city = city
-        self.__zip = zip_code
+        self.__zip_code = zip_code
 
     def __repr__(self):
         # Gibt eine lesbare Darstellung der Adresse zurück (z.B. für print())
-        return f"Address(id={self.__address_id}, street={self.__street}, city={self.__city}, zip={self.__zip})"
+        return f"Address(id={self.__address_id}, street={self.__street}, city={self.__city}, zip_code={self.__zip_code})"
 
     # ===================================================
     # Getter für address_id (nur lesbar, keine Änderung erlaubt)
@@ -57,11 +57,11 @@ class Address:
     # Getter und Setter für zip (Postleitzahl)
     @property
     def zip(self) -> str:
-        return self.__zip
+        return self.__zip_code
 
     @zip.setter
     def zip(self, zip_code: str):
         # Setter prüft, ob die neue PLZ gültig ist
         if not zip_code:
             raise ValueError("zip cannot be empty")
-        self.__zip = zip_code
+        self.__zip_code = zip_code
