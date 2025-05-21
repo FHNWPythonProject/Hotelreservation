@@ -22,7 +22,14 @@ Zur Umsetzung des gesamten Projekts wurden folgende Tools verwendet:
 * Miro Board: Sprint Planung
 
 # Klassendiagramm und Modellierung
+In der Unterrichtseinheit 2 haben wir uns mit dem Object-Oriented-Programming (OOP) auseinander gesetzt. Wir haben gelernt, wie man aus einem ER-Diagramm (von den Coaches vorgegeben) ein Klassendiagramm nach den Prinzipien der objektorientierten Programmierung erstellt. Das ER-Diagramm beschreibt dabei die Datenstruktur des Hotelreservierungssystems. Es zeigt Entitäten wie "Hotel", "Room", "Guest", "Booking" usw. mit deren Attributen und Beziehungen. Basierend darauf haben wir unser Klassendiagramm erstellt. Jede Entität wurde dabei in eine Klasse übersetzt, ergänzt durch passende Methoden, um die OOP Prinzipien korrekt umzusetzen. 
 
+## Aufbau und Prinzipien unseres Klassendiagramms
+Bei der Modellierung des Klassendiagramms haben wir folgende Konstrukte gelernt und angewendet: 
+* Encapsulation: bezeichnet das Prinzip, dass interne DAten und die Implementierung einer Klasse privat bleiben und nur über definierte Schnittstellen (Getter, Setter) zugänglich sind. 
+* Private Attribute: in unserem Klassendiagramm sind alle Attribute privat modelliert und mit einem Minuszeichen "-" gekennzeichnet. Im Python-Code beginnen diese mit zwei Unterstrichen (z.B. "__roomNo"). Dadurch wird der direktze Zugriff von aussen verhindert. Ein Benutzer der Klasse kann die DAten nicht unbeabsichtigt verändern.
+* Getter-Methode: Diese Methode ermöglicht das kontrolierte Einsehen von Attributen. So kann ein Attribut zwar eingesehen aber nicht direkt verändert werden (z.B. "getRoomNo()").
+* Setter-Methode: Diese Methode erlaubt das gezielte Setzen eines neuen Wertes. 
 # 
 
 # Main Learnings und Reflexion
@@ -30,6 +37,14 @@ Zur Umsetzung des gesamten Projekts wurden folgende Tools verwendet:
 ## Team Zusammenarbeit
 
 ## Modul-bezogene Learnings
+
+# Anhang
+## Miro Board Sprints
+![Miro Board Sprint 1](images/MB_Sprint1.png)
+![Mir Board Sprint 2](images/MB_Sprint2.png)
+![Mir Board Sprint 3](images/MB_Sprint3.png)
+
+
 
 
 
