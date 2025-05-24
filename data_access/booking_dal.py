@@ -74,3 +74,11 @@ class BookingDAL(BaseDal):
         params = (room_no, checkout, checkin)
         result = self.fetchone(sql, params)
         return result[0] == 0
+    
+    def create_booking(self, guest_id: int, room_id: int, checkin, checkout):
+        sql = """
+        INSERT INTO Booking (guest_id, room_id, check_in_date, check_out_date)
+        VALUES (?, ?, ?, ?)
+        """
+        self.execute(sql, (guest_id, room_id, checkin, checkout))
+

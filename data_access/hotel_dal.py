@@ -84,3 +84,14 @@ class HotelDAL(BaseDal):
         params = (name, stars, address.address_id)
         hotel_id, _ = self.execute(sql, params)
         return Hotel(hotel_id=hotel_id, name=name, stars=stars, address=address)
+
+
+    def update_hotel(self, hotel: Hotel):
+        sql = "UPDATE Hotel SET Name = ?, Stars = ? WHERE Hotel_Id = ?"
+        params = (hotel.name, hotel.stars, hotel.hotel_id)
+        self.execute(sql, params)
+
+    def delete_hotel(self, hotel_id: int) -> None:
+        sql = "DELETE FROM Hotel WHERE hotel_id = ?"
+        self.execute(sql, (hotel_id,))
+

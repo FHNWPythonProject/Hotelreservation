@@ -48,3 +48,17 @@ class InvoiceDAL(BaseDal):
         # Rechnung löschen
         sql = "DELETE FROM Invoice WHERE InvoiceId = ?"
         self.execute(sql, (invoice.invoice_id,))
+
+    def read_invoice_by_guest(self, guest_id: int) -> list[tuple]:
+        sql = """
+        SELECT i.invoice_id, i.amount, i.issued_date,
+            b.checkin_date, b.checkout_date,
+            r.room_number, h.name AS hotel_name
+        FROM Invoice i
+        JOIN Booking b ON i.booking_id = b.booking_id
+        JOIN Room r ON b.room_id = r.room_id
+        JOIN Hotel h ON r.hotel_id = h.hotel_id
+        WHERE b.guest_id = ?
+        """
+        return self.fetchall(sql, (guest_id,))
+

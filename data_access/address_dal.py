@@ -11,7 +11,7 @@ class AddressDAL(BaseDal):
         result = self.fetchone(sql, (address_id,))
         if result:
             id_, street, city, zip_code = result
-            return model.Address(address_id=id_, street=street, city=city, zip_code=zip_code)
+            return Address(address_id=id_, street=street, city=city, zip_code=zip_code)
         return None
 
     def read_all_addresses(self) -> list[Address]:

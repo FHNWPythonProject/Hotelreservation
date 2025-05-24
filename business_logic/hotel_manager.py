@@ -26,6 +26,12 @@ class HotelManager:
         # Hotel mit der erstellten Adresse speichern
         return self.hotel_dal.create_hotel(name=name, stars=stars, address=new_address)
 
+    def update_hotel(self, hotel: Hotel):
+        self.hotel_dal.update_hotel(hotel)
+
+    def delete_hotel(self, hotel_id: int):
+        self.hotel_dal.delete_hotel(hotel_id)
+
 
 
 
