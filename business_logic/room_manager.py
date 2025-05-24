@@ -5,14 +5,15 @@ from datetime import date
 
 class RoomManager:
     def __init__(self):
-        self.__room_dal = RoomDAL()
+        self.room_dal = RoomDAL()
 
-    def get_rooms_cheaper_than(self, max_price: float) -> list[Room]:
-        # Gibt alle Zimmer zurück, deren Preis unterhalb des Limits liegt
-        all_rooms = self.__room_dal.read_all_rooms()
-        return [room for room in all_rooms if room.price_per_night <= max_price]
+    def get_rooms_by_city_and_guest_count(self, city: str, guest_count: int):
+        return self.room_dal.read_rooms_by_city_and_guest_count(city, guest_count)
 
-    def get_available_rooms(self, checkin: date, checkout: date) -> list[Room]:
-        # Gibt alle Zimmer zurück, die im angegebenen Zeitraum verfügbar sind.
-        return self._room_dal.read_available_rooms(checkin, checkout)
+    def get_available_rooms_by_city_and_dates(self, city: str, checkin, checkout):
+        return self.room_dal.read_available_rooms_by_city_and_dates(city, checkin, checkout)
+
+    def get_filtered_rooms(self, city: str, guest_count: int, min_stars: int):
+        return self.room_dal.read_available_rooms_by_city_guest_count_and_stars(city, guest_count, min_stars)
+
 

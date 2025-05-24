@@ -30,8 +30,8 @@ class RoomDAL(BaseDal):
 
     def read_rooms_by_city_and_guest_count(self, city: str, guest_count: int) -> list[Room]:
         sql = """
-        SELECT r.room_id, r.room_number, r.price_per_night, rt.max_guests, r.hotel_id,
-               rt.type_id, rt.description, rt.max_guests
+        SELECT r.room_id, r.room_number, r.price_per_night, r.hotel_id,
+               rt.type_id, rt.max_guests, rt.description
         FROM Room r
         JOIN Room_Type rt ON r.type_id = rt.type_id
         JOIN Hotel h ON r.hotel_id = h.hotel_id
@@ -44,11 +44,10 @@ class RoomDAL(BaseDal):
                 room_id=row[0],
                 room_number=row[1],
                 price_per_night=row[2],
-                max_guests=row[3],
-                hotel_id=row[4],
-                room_type=RoomType(type_id=row[5], description=row[6], max_guests=row[7])
-            )
-            for row in rows
+                hotel_id=row[3],
+                max_guests=row[5],
+                room_type=RoomType(type_id=row[4], description=row[6])
+            ) for row in rows
         ]
 
     def read_rooms_by_city_guest_count_stars_and_availability(self, city, guest_count, min_stars, checkin, checkout):
@@ -103,4 +102,54 @@ class RoomDAL(BaseDal):
                 room_type=RoomType(type_id=row[5], description=row[6])
             )
             for row in rows
+        ]
+
+    def read_available_rooms_by_city_and_dates(self, city: str, checkin, checkout) -> list[Room]:
+        sql = """
+        SELECT r.room_id, r.room_number, r.price_per_night, r.hotel_id,
+               rt.type_id, rt.max_guests, rt.description
+        FROM Room r
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        JOIN Hotel h ON r.hotel_id = h.hotel_id
+        JOIN Address a ON h.address_id = a.address_id
+        WHERE a.city = ?
+        AND r.room_id NOT IN (
+            SELECT room_id FROM Booking
+            WHERE NOT (check_out_date <= ? OR check_in_date >= ?)
+        )
+        """
+        rows = self.fetchall(sql, (city, checkin, checkout))
+        return [
+            Room(
+                room_id=row[0],
+                room_number=row[1],
+                price_per_night=row[2],
+                hotel_id=row[3],
+                max_guests=row[5],
+                room_type=RoomType(type_id=row[4], max_guests=row[5], description=row[6])
+            ) for row in rows
+        ]
+
+    def read_available_rooms_by_city_guest_count_and_stars(self, city: str, guest_count: int, min_stars: int) -> list[Room]:
+        sql = """
+        SELECT r.room_id, r.room_number, r.price_per_night, r.hotel_id,
+               rt.type_id, rt.max_guests, rt.description
+        FROM Room r
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        JOIN Hotel h ON r.hotel_id = h.hotel_id
+        JOIN Address a ON h.address_id = a.address_id
+        WHERE a.city = ?
+          AND rt.max_guests >= ?
+          AND h.stars >= ?
+        """
+        rows = self.fetchall(sql, (city, guest_count, min_stars))
+        return [
+            Room(
+                room_id=row[0],
+                room_number=row[1],
+                price_per_night=row[2],
+                hotel_id=row[3],
+                max_guests=row[5],
+                room_type=RoomType(type_id=row[4], max_guests=row[5], description=row[6])
+            ) for row in rows
         ]

@@ -8,13 +8,14 @@ if TYPE_CHECKING:
 
 
 class Room:
-    def __init__(self, room_id, room_number, price_per_night, max_guests, hotel_id, room_type):
+    def __init__(self, room_id, room_number, price_per_night, hotel_id, max_guests, room_type):
         self.room_id = room_id
         self.room_number = room_number
         self.price_per_night = price_per_night
-        self.max_guests = max_guests
         self.hotel_id = hotel_id
+        self.max_guests = max_guests
         self.room_type = room_type
+
 
 
     def __repr__(self):
