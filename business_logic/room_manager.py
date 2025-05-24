@@ -16,4 +16,10 @@ class RoomManager:
     def get_filtered_rooms(self, city: str, guest_count: int, min_stars: int):
         return self.room_dal.read_available_rooms_by_city_guest_count_and_stars(city, guest_count, min_stars)
 
+    def get_room_details(self):
+        return self.room_dal.read_room_details()
+
+    def get_available_room_details_by_date(self, checkin, checkout):
+        return self.room_dal.read_available_room_details_by_date(checkin, checkout)
+
 

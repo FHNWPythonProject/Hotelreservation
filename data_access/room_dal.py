@@ -153,3 +153,45 @@ class RoomDAL(BaseDal):
                 room_type=RoomType(type_id=row[4], max_guests=row[5], description=row[6])
             ) for row in rows
         ]
+
+    def read_room_details(self) -> list[Room]:
+        sql = """
+        SELECT r.room_id, r.room_number, r.price_per_night, r.hotel_id,
+               rt.type_id, rt.description, rt.max_guests
+        FROM Room r
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        """
+        rows = self.fetchall(sql)
+        return [
+            Room(
+                room_id=row[0],
+                room_number=row[1],
+                price_per_night=row[2],
+                hotel_id=row[3],
+                max_guests=row[6],
+                room_type=RoomType(type_id=row[4], description=row[5], max_guests=row[6])
+            ) for row in rows
+        ]
+    
+    def read_available_room_details_by_date(self, checkin, checkout) -> list[Room]:
+        sql = """
+        SELECT r.room_id, r.room_number, r.price_per_night, r.hotel_id,
+               rt.type_id, rt.description, rt.max_guests
+        FROM Room r
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        WHERE r.room_id NOT IN (
+            SELECT room_id FROM Booking
+            WHERE NOT (check_out_date <= ? OR check_in_date >= ?)
+        )
+        """
+        rows = self.fetchall(sql, (checkin, checkout))
+        return [
+            Room(
+                room_id=row[0],
+                room_number=row[1],
+                price_per_night=row[2],
+                hotel_id=row[3],
+                max_guests=row[6],
+                room_type=RoomType(type_id=row[4], description=row[5], max_guests=row[6])
+            ) for row in rows
+        ]

@@ -75,3 +75,12 @@ class HotelDAL(BaseDal):
         JOIN Address a ON h.address_id = a.address_id
         """
         return self.fetchall(sql)
+    
+    def create_hotel(self, name: str, stars: int, address) -> Hotel:
+        sql = """
+        INSERT INTO Hotel (Name, Stars, Address_id)
+        VALUES (?, ?, ?)
+        """
+        params = (name, stars, address.address_id)
+        hotel_id, _ = self.execute(sql, params)
+        return Hotel(hotel_id=hotel_id, name=name, stars=stars, address=address)
