@@ -1,84 +1,85 @@
-from datetime import datetime
 from data_access.base_dal import BaseDal
 from model.booking import Booking
-import pandas as pd
+from datetime import datetime
 
 class BookingDAL(BaseDal):
-    def __init__(self, db_path: str = None):
-        super().__init__(db_path)
-
-    def create_new_booking(self, guest_id: int, room_no: int, checkin: datetime, checkout: datetime, total_amount: float) -> Booking:
-        # Neue Buchung erstellen
-        sql = """
-        INSERT INTO Booking (GuestId, RoomNo, Checkin, Checkout, TotalAmount, IsCancelled)
-        VALUES (?, ?, ?, ?, ?, 0)
-        """
-        params = (guest_id, room_no, checkin, checkout, total_amount)
-        last_row_id, _ = self.execute(sql, params)
-        return Booking(booking_id=last_row_id, guest=None, room=None,
-                             checkin=checkin, checkout=checkout, total_amount=total_amount)
-
     def read_booking_by_id(self, booking_id: int) -> Booking | None:
-        # Buchung lesen
+        # Eine Buchung anhand ihrer ID laden
         sql = """
-        SELECT BookingId, GuestId, RoomNo, Checkin, Checkout, TotalAmount, IsCancelled
-        FROM Booking WHERE BookingId = ?
+        SELECT booking_id, guest_id, room_id, check_in_date, check_out_date, total_amount, is_cancelled
+        FROM Booking
+        WHERE booking_id = ?
         """
         result = self.fetchone(sql, (booking_id,))
         if result:
-            booking_id, guest_id, room_no, checkin, checkout, total_amount, is_cancelled = result
-            booking = Booking(booking_id, guest=None, room=None, checkin=checkin, checkout=checkout, total_amount=total_amount)
-            if is_cancelled:
-                booking.cancel()
-            return booking
+            return Booking(
+                booking_id=result[0],
+                guest_id=result[1],
+                room_id=result[2],
+                checkin_date=result[3],
+                checkout_date=result[4],
+                total_amount=result[5],
+                is_cancelled=bool(result[6])
+            )
         return None
 
     def read_all_bookings(self) -> list[Booking]:
-        # Alle Buchungen als Liste
-        sql = "SELECT BookingId, GuestId, RoomNo, Checkin, Checkout, TotalAmount, IsCancelled FROM Booking"
+        # Alle Buchungen laden
+        sql = """
+        SELECT booking_id, guest_id, room_id, check_in_date, check_out_date, total_amount, is_cancelled
+        FROM Booking
+        """
         rows = self.fetchall(sql)
-        bookings = []
-        for b in rows:
-            booking = Booking(b[0], guest=None, room=None, checkin=b[3], checkout=b[4], total_amount=b[5])
-            if b[6]:
-                booking.cancel()
-            bookings.append(booking)
-        return bookings
+        return [
+            Booking(
+                booking_id=row[0],
+                guest_id=row[1],
+                room_id=row[2],
+                checkin_date=row[3],
+                checkout_date=row[4],
+                total_amount=row[5],
+                is_cancelled=bool(row[6])
+            )
+            for row in rows
+        ]
 
-    def read_all_bookings_as_df(self) -> pd.DataFrame:
-        # Alle Buchungen als DataFrame
-        sql = "SELECT BookingId, GuestId, RoomNo, Checkin, Checkout, TotalAmount, IsCancelled FROM Booking"
-        return pd.read_sql(sql, self.get_connection(), index_col="BookingId")
-
-    def update_booking(self, booking: Booking) -> None:
-        # Buchung aktualisieren
+    def create_booking(self, booking: Booking) -> int:
+        # Neue Buchung einfügen
         sql = """
-        UPDATE Booking SET Checkin = ?, Checkout = ?, TotalAmount = ?, IsCancelled = ?
-        WHERE BookingId = ?
+        INSERT INTO Booking (guest_id, room_id, check_in_date, check_out_date, total_amount, is_cancelled)
+        VALUES (?, ?, ?, ?, ?, ?)
         """
-        params = (booking.checkin, booking.checkout, booking.total_amount, booking.is_cancelled, booking.booking_id)
-        self.execute(sql, params)
+        params = (
+            booking.guest_id,
+            booking.room_id,
+            booking.checkin_date,
+            booking.checkout_date,
+            booking.total_amount,
+            int(booking.is_cancelled)
+        )
+        booking_id, _ = self.execute(sql, params)
+        return booking_id
 
-    def delete_booking(self, booking: Booking) -> None:
+    def delete_booking(self, booking_id: int) -> None:
         # Buchung löschen
-        sql = "DELETE FROM Booking WHERE BookingId = ?"
-        self.execute(sql, (booking.booking_id,))
+        sql = "DELETE FROM Booking WHERE booking_id = ?"
+        self.execute(sql, (booking_id,))
 
-    def is_room_available(self, room_no: int, checkin: datetime, checkout: datetime) -> bool:
-        # Prüfen, ob ein Zimmer im Zeitraum verfügbar ist
+    def read_all_bookings_with_hotel_info(self):
         sql = """
-        SELECT COUNT(*) FROM Booking
-        WHERE RoomNo = ? AND IsCancelled = 0
-        AND (Checkin < ? AND Checkout > ?)
+        SELECT 
+            b.booking_id, h.name, r.room_number, 
+            b.check_in_date, b.check_out_date, 
+            b.total_amount, b.is_cancelled
+        FROM Booking b
+        JOIN Room r ON b.room_id = r.room_id
+        JOIN Hotel h ON r.hotel_id = h.hotel_id
+        ORDER BY b.check_in_date DESC
         """
-        params = (room_no, checkout, checkin)
-        result = self.fetchone(sql, params)
-        return result[0] == 0
-    
-    def create_booking(self, guest_id: int, room_id: int, checkin, checkout):
-        sql = """
-        INSERT INTO Booking (guest_id, room_id, check_in_date, check_out_date)
-        VALUES (?, ?, ?, ?)
-        """
-        self.execute(sql, (guest_id, room_id, checkin, checkout))
+        return self.fetchall(sql)
+        
 
+    def update_phone_number(self, booking_id: int, phone_number: str) -> None:
+        # Aktualisiert die Telefonnummer einer Buchung.
+        sql = "UPDATE Booking SET PhoneNumber = ? WHERE BookingId = ?"
+        self.execute(sql, (phone_number, booking_id))

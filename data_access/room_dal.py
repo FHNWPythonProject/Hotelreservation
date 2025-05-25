@@ -195,3 +195,45 @@ class RoomDAL(BaseDal):
                 room_type=RoomType(type_id=row[4], description=row[5], max_guests=row[6])
             ) for row in rows
         ]
+    
+    def read_room_by_id(self, room_id: int) -> Room | None:
+        sql = """
+        SELECT r.room_id, r.room_number, r.price_per_night, r.hotel_id,
+               rt.type_id, rt.max_guests, rt.description
+        FROM Room r
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        WHERE r.room_id = ?
+        """
+        result = self.fetchone(sql, (room_id,))
+        if result:
+            return Room(
+                room_id=result[0],
+                room_number=result[1],
+                price_per_night=result[2],
+                hotel_id=result[3],
+                max_guests=result[5],
+                room_type=RoomType(
+                    type_id=result[4],
+                    max_guests=result[5],
+                    description=result[6]
+                )
+            )
+        return None
+
+    def read_rooms_with_facilities(self):
+        sql = """
+        SELECT r.room_id, r.room_number, r.price_per_night,
+        rt.description AS room_type,
+        GROUP_CONCAT(rf.facility_id) AS facility_ids
+        FROM Room r
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        LEFT JOIN Room_Facilities rf ON r.room_id = rf.room_id
+        GROUP BY r.room_id
+        """
+        return self.fetchall(sql)
+
+    def update_price(self, room_id: int, new_price: float):
+        sql = "UPDATE Room SET price_per_night = ? WHERE room_id = ?"
+        self.execute(sql, (new_price, room_id))
+
+

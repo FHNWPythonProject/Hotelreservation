@@ -1,130 +1,84 @@
-from __future__ import annotations
-from typing import TYPE_CHECKING
-from datetime import date  # zum Arbeiten mit Check-in / Check-out
-
-# Verhindert Importfehler bei zirkulären Abhängigkeiten
-if TYPE_CHECKING:
-    from model.room import Room
-    from model.guest import Guest
-    from model.invoice import Invoice
-
-
 class Booking:
-    # Konstruktor: erstellt ein neues Booking-Objekt
-    def __init__(
-        self,
-        booking_id: int,
-        checkin: date,
-        checkout: date,
-        total_amount: float,
-        guest: Guest = None,
-        room: Room = None
-    ):
-        # Prüfung: booking_id muss ein Integer sein
-        if not isinstance(booking_id, int):
-            raise ValueError("booking_id must be an integer")
+    def __init__(self, booking_id: int, guest_id: int, room_id: int, checkin_date, checkout_date, total_amount: float, is_cancelled: bool, phone_number: str = None):
+        self._booking_id = booking_id
+        self._guest_id = guest_id
+        self._room_id = room_id
+        self._checkin_date = checkin_date
+        self._checkout_date = checkout_date
+        self._total_amount = total_amount
+        self._is_cancelled = is_cancelled
+        self._phone_number = phone_number  
 
-        # Prüfung: checkin und checkout müssen Datumsobjekte sein
-        if not isinstance(checkin, date) or not isinstance(checkout, date):
-            raise ValueError("checkin and checkout must be date objects")
 
-        # Logik: Check-out muss nach dem Check-in liegen
-        if checkin >= checkout:
-            raise ValueError("checkout must be after checkin")
-
-        # Prüfung: Preis muss eine positive Zahl sein
-        if not isinstance(total_amount, (int, float)) or total_amount <= 0:
-            raise ValueError("total_amount must be a positive number")
-
-        # Private Attribute setzen
-        self.__booking_id: int = booking_id
-        self.__checkin: date = checkin
-        self.__checkout: date = checkout
-        self.__total_amount: float = total_amount
-        self.__guest: Guest = guest       # optional beim Erstellen
-        self.__room: Room = room          # optional beim Erstellen
-        self.__is_cancelled: bool = False # initial: Buchung ist nicht storniert
-        self.__invoice: Invoice = None    # Rechnung wird später zugewiesen
-
-        # Rückverknüpfung mit Guest & Room setzen (wenn übergeben)
-        if guest:
-            guest.add_booking(self)
-        if room:
-            room.add_booking(self)
-
-    def __repr__(self):
-        # Textdarstellung z. B. Booking(id=4, from=2025-06-01, to=2025-06-07)
-        return f"Booking(id={self.__booking_id}, from={self.__checkin}, to={self.__checkout})"
-
-    # -----------------------------------------
+    # ===================================
+    # Getter + Setter für booking_id
     @property
-    def booking_id(self) -> int:
-        # gibt die eindeutige Buchungs-ID zurück
-        return self.__booking_id
+    def booking_id(self):
+        return self._booking_id
+
+    @booking_id.setter
+    def booking_id(self, value):
+        self._booking_id = value
+
+    # ===================================
+    @property
+    def guest_id(self):
+        return self._guest_id
+
+    @guest_id.setter
+    def guest_id(self, value):
+        self._guest_id = value
 
     @property
-    def checkin(self) -> date:
-        # Rückgabe des Check-in-Datums
-        return self.__checkin
+    def room_id(self):
+        return self._room_id
+
+    @room_id.setter
+    def room_id(self, value):
+        self._room_id = value
 
     @property
-    def checkout(self) -> date:
-        # Rückgabe des Check-out-Datums
-        return self.__checkout
+    def checkin_date(self):
+        return self._checkin_date
+
+    @checkin_date.setter
+    def checkin_date(self, value):
+        self._checkin_date = value
 
     @property
-    def total_amount(self) -> float:
-        # Rückgabe des Rechnungsbetrags
-        return self.__total_amount
+    def checkout_date(self):
+        return self._checkout_date
+
+    @checkout_date.setter
+    def checkout_date(self, value):
+        self._checkout_date = value
+
+    @property
+    def total_amount(self):
+        return self._total_amount
 
     @total_amount.setter
-    def total_amount(self, amount: float):
-        # erlaubt, den Rechnungsbetrag zu ändern (z. B. Rabatt)
-        if not isinstance(amount, (int, float)) or amount <= 0:
-            raise ValueError("total_amount must be positive")
-        self.__total_amount = amount
+    def total_amount(self, value):
+        self._total_amount = value
 
     @property
-    def is_cancelled(self) -> bool:
-        # zeigt an, ob die Buchung storniert wurde
-        return self.__is_cancelled
+    def is_cancelled(self):
+        return self._is_cancelled
 
-    def cancel(self):
-        # Methode zum Stornieren der Buchung
-        self.__is_cancelled = True
-
-    @property
-    def guest(self) -> Guest:
-        # gibt den verknüpften Gast zurück
-        return self.__guest
-
-    @guest.setter
-    def guest(self, guest: Guest):
-        from model import Guest
-        if guest is not None and not isinstance(guest, Guest):
-            raise ValueError("guest must be a Guest instance")
-        self.__guest = guest
+    @is_cancelled.setter
+    def is_cancelled(self, value):
+        self._is_cancelled = value
 
     @property
-    def room(self) -> Room:
-        # gibt das zugeordnete Zimmer zurück
-        return self.__room
+    def phone_number(self):
+        return self._phone_number
 
-    @room.setter
-    def room(self, room: Room):
-        from model import Room
-        if room is not None and not isinstance(room, Room):
-            raise ValueError("room must be a Room instance")
-        self.__room = room
+    @phone_number.setter
+    def phone_number(self, value):
+        self._phone_number = value
 
-    @property
-    def invoice(self) -> Invoice:
-        # gibt die zugehörige Rechnung zurück
-        return self.__invoice
+    
 
-    @invoice.setter
-    def invoice(self, invoice: Invoice):
-        from model import Invoice
-        if invoice is not None and not isinstance(invoice, Invoice):
-            raise ValueError("invoice must be an Invoice instance")
-        self.__invoice = invoice
+   
+
+

@@ -32,7 +32,7 @@ class Invoice:
     @property
     def issue_date(self) -> date:
         # gibt das Ausstellungsdatum zurück
-        return self.__issue_date
+        return self.__issue_date 
 
     @issue_date.setter
     def issue_date(self, value: date):

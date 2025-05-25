@@ -22,4 +22,23 @@ class RoomManager:
     def get_available_room_details_by_date(self, checkin, checkout):
         return self.room_dal.read_available_room_details_by_date(checkin, checkout)
 
+    def apply_dynamic_pricing(self, base_price: float, checkin: date) -> float:
+        month = checkin.month
+        if month in [7, 8]:  # Juli, August
+            return base_price * 1.20
+        elif month in [1, 2]:  # Januar, Februar
+            return base_price * 0.85
+        return base_price
+
+    def get_dynamic_room_prices(self, checkin, checkout):
+        rooms = self.room_dal.read_available_room_details_by_date(checkin, checkout)
+        for room in rooms:
+            room.price_per_night = self.apply_dynamic_pricing(room.price_per_night, checkin)
+        return rooms
+
+    def get_rooms_with_facilities(self):
+        return self.room_dal.read_rooms_with_facilities()
+    
+    def update_price(self, room_id: int, new_price: float):
+        self.room_dal.update_price(room_id, new_price)
 

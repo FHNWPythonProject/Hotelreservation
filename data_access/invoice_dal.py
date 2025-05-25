@@ -1,64 +1,28 @@
-from datetime import date
-import pandas as pd
-import model
+
 from data_access.base_dal import BaseDal
+from model.invoice import Invoice
 
 class InvoiceDAL(BaseDal):
-    def __init__(self, db_path: str = None):
-        # Initialisiert Verbindung zur Datenbank
-        super().__init__(db_path)
+    def create_invoice(self, booking_id: int, amount: float) -> int:
+        sql = """
+        INSERT INTO Invoice (Booking_Id, Total_Amount)
+        VALUES (?, ?)
+        """
+        params = (booking_id, amount)
+        last_id, _ = self.execute(sql, params)
+        return last_id
 
-    def create_new_invoice(self, issue_date: date, total_amount: float) -> model.Invoice:
-        # Neue Rechnung erstellen
-        if issue_date is None or total_amount is None:
-            raise ValueError("issue_date and total_amount are required")
-
-        sql = "INSERT INTO Invoice (IssueDate, TotalAmount) VALUES (?, ?)"
-        params = (issue_date, total_amount)
-        last_row_id, _ = self.execute(sql, params)
-        return model.Invoice(invoice_id=last_row_id, issue_date=issue_date, total_amount=total_amount)
-
-    def read_invoice_by_id(self, invoice_id: int) -> model.Invoice | None:
-        # Rechnung per ID lesen
-        sql = "SELECT InvoiceId, IssueDate, TotalAmount FROM Invoice WHERE InvoiceId = ?"
+    def read_invoice_by_id(self, invoice_id: int) -> Invoice | None:
+        sql = """
+        SELECT InvoiceId, Booking_Id, Total_Amount
+        FROM Invoice
+        WHERE Invoice_Id = ?
+        """
         result = self.fetchone(sql, (invoice_id,))
         if result:
-            id_, issue_date, total = result
-            return model.Invoice(invoice_id=id_, issue_date=issue_date, total_amount=total)
+            return Invoice(
+                invoice_id=result[0],
+                booking_id=result[1],
+                total_amount=result[2],
+            )
         return None
-
-    def read_all_invoices(self) -> list[model.Invoice]:
-        # Alle Rechnungen als Liste zurückgeben
-        sql = "SELECT InvoiceId, IssueDate, TotalAmount FROM Invoice"
-        rows = self.fetchall(sql)
-        return [model.Invoice(invoice_id=id_, issue_date=dt, total_amount=amount) for id_, dt, amount in rows]
-
-    def read_all_invoices_as_df(self) -> pd.DataFrame:
-        # Alle Rechnungen als DataFrame zurückgeben
-        sql = "SELECT InvoiceId, IssueDate, TotalAmount FROM Invoice"
-        return pd.read_sql(sql, self.get_connection(), index_col="InvoiceId")
-
-    def update_invoice(self, invoice: model.Invoice) -> None:
-        # Rechnung aktualisieren
-        sql = "UPDATE Invoice SET IssueDate = ?, TotalAmount = ? WHERE InvoiceId = ?"
-        params = (invoice.issue_date, invoice.total_amount, invoice.invoice_id)
-        self.execute(sql, params)
-
-    def delete_invoice(self, invoice: model.Invoice) -> None:
-        # Rechnung löschen
-        sql = "DELETE FROM Invoice WHERE InvoiceId = ?"
-        self.execute(sql, (invoice.invoice_id,))
-
-    def read_invoice_by_guest(self, guest_id: int) -> list[tuple]:
-        sql = """
-        SELECT i.invoice_id, i.amount, i.issued_date,
-            b.checkin_date, b.checkout_date,
-            r.room_number, h.name AS hotel_name
-        FROM Invoice i
-        JOIN Booking b ON i.booking_id = b.booking_id
-        JOIN Room r ON b.room_id = r.room_id
-        JOIN Hotel h ON r.hotel_id = h.hotel_id
-        WHERE b.guest_id = ?
-        """
-        return self.fetchall(sql, (guest_id,))
-
