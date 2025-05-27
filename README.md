@@ -68,7 +68,7 @@ Neben der Teamarbeit konnten wir im Rahmen des Moduls konkrete fachliche und tec
 * Zusätzlich konnten wir Konzepte aus unserem vorherigen Modul (Datenbasierte Unternehmensanwendungen) vertiefen, indem wir unser Wissen über zum Beispiel Beziehungen wie m:n mit Zwischentabellen anwenden konnten
 
 ### 4.2.2 Python und Objektorientierung
-* Wir haben gelernt, wie man eigene Klassen mit Attributen, Methoden und Konstruktoren (__init__) und Getter/Setter erstellt
+* Wir haben gelernt, wie man eigene Klassen mit Attributen, Methoden und Konstruktoren (__ init __) und Getter/Setter erstellt
 * Durch den Einsatz von Entkapselung konnten wir den Zugriff auf Daten gezielt steuern und so wartbaren Code schreiben
 * Wir haben den Nutzen von OOP-Konzepten wie z.B. Aggregation gelernt
 
