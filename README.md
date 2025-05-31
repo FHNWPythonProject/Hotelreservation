@@ -63,30 +63,30 @@ Was haben wir konkret gelernt?
 Neben der Teamarbeit konnten wir im Rahmen des Moduls konkrete fachliche und technische Kompetenzen aufbauen, die uns in den kommenden Modulen und hoffentlich in unserem späteren Arbeitsleben weiterbringen werden. 
 
 ### 4.2.1 Vom Datenmodell zum Klassendiagramm
-* Wir haben gelernt, wie man vom ER-Diagramm in ein Klassendiagramm überführen kann
-* Dabei haben wir gelernt, wie sich logische Entitäten (z.B. Hotel, Room, etc.) in Python-Klassen mit Beziehungen übersetzen lassen
-* Zusätzlich konnten wir Konzepte aus unserem vorherigen Modul (Datenbasierte Unternehmensanwendungen) vertiefen, indem wir unser Wissen über zum Beispiel Beziehungen wie m:n mit Zwischentabellen anwenden konnten
+* Wir haben gelernt, wie man vom ER-Diagramm in ein Klassendiagramm überführen kann.
+* Dabei haben wir gelernt, wie sich logische Entitäten (z.B. Hotel, Room, etc.) in Python-Klassen mit Beziehungen übersetzen lassen.
+* Zusätzlich konnten wir Konzepte aus unserem vorherigen Modul (Datenbasierte Unternehmensanwendungen) vertiefen, indem wir unser Wissen über zum Beispiel Beziehungen wie m:n mit Zwischentabellen anwenden konnten.
 
 ### 4.2.2 Python und Objektorientierung
-* Wir haben gelernt, wie man eigene Klassen mit Attributen, Methoden und Konstruktoren (__ init __) und Getter/Setter erstellt
-* Durch den Einsatz von Entkapselung konnten wir den Zugriff auf Daten gezielt steuern und so wartbaren Code schreiben
-* Wir haben den Nutzen von OOP-Konzepten wie z.B. Aggregation gelernt
+* Wir haben gelernt, wie man eigene Klassen mit Attributen, Methoden und Konstruktoren (__ init __) und Getter/Setter erstellt.
+* Durch den Einsatz von Entkapselung konnten wir den Zugriff auf Daten gezielt steuern und so wartbaren Code schreiben.
+* Wir haben den Nutzen von OOP-Konzepten wie z.B. Aggregation gelernt.
 
 ### 4.2.3 Github
-* Wir konnten in diesem Modul unsere ersten Erfahrungen mit Github machen, was uns in anderen Modulen auch weiterhalf
-* Wir haben gelernt, wie man ein Repository erstellt, Dateien hochlädt und diese verwaltet
-* Wir haben unser Projekt strukturiert abgelegt und begonnen, das read.ME als zentrale Dokumentation zu nutzen
+* Wir konnten in diesem Modul unsere ersten Erfahrungen mit Github machen, was uns in anderen Modulen auch weiterhalf.
+* Wir haben gelernt, wie man ein Repository erstellt, Dateien hochlädt und diese verwaltet.
+* Wir haben unser Projekt strukturiert abgelegt und begonnen, das read.ME als zentrale Dokumentation zu nutzen.
 
 ### 4.2.4 Herausforderungen
-* Der Einstieg in eine objektorientierte Denkweise ist uns am Anfang schwer gefallen. Insbesondere das saubere Trennen von Attributen und Methoden, sowie die Modellierung von Beziehungen
-* Das richtige Umsetzen von Getter- und Setter-Methoden in Python war zu Beginn schwierig. Wir mussten das viel üben und rechechieren
-* Der Umgang mit Github war zu Beginn sehr ungewohnt, da es für uns alle ein komplett neues Tool war. Wir mussten erst alle Funktionen und Möglichkeiten kennenlernen, bis wir wussten, was wir alles damit anfangen können
-* Die Umsetzung von einzelnen User-Stories war teilweise schwierig, vorallem die Geschäftslogik korrekt zu interpretieren und in Code zu schreiben (z.B. wie Buchungen mit Rechnungen verknüpft werden sollen)
+* Der Einstieg in eine objektorientierte Denkweise ist uns am Anfang schwer gefallen. Insbesondere das saubere Trennen von Attributen und Methoden, sowie die Modellierung von Beziehungen.
+* Das richtige Umsetzen von Getter- und Setter-Methoden in Python war zu Beginn schwierig. Wir mussten das viel üben und rechechieren.
+* Der Umgang mit Github war zu Beginn sehr ungewohnt, da es für uns alle ein komplett neues Tool war. Wir mussten erst alle Funktionen und Möglichkeiten kennenlernen, bis wir wussten, was wir alles damit anfangen können.
+* Die Umsetzung von einzelnen User-Stories war teilweise schwierig, vorallem die Geschäftslogik korrekt zu interpretieren und in Code zu schreiben (z.B. wie Buchungen mit Rechnungen verknüpft werden sollen).
 
 ### 4.2.5 Lerneffekt
-* Rückblickend konnten wir unser Verständnis für strukturierte Programmierung in Python deutlich erweitern
-* Die iterative Umsetzung der User-Stories hat uns geholfen, die gelernte Theorie auf ein praktisches Beispiel anzuwenden
-* Die von den Dozenten zu Beginn erwähnte Geduld, die es beim Lernen von Programmieren benötigt, hat sich ausbezahlt. Zu Beginn wirkte alles sehr abstrakt und durch viel Üben und direktes Umsetzen konnten wir uns einen Gesamt-Überblick über das gesamte Thema verschaffen
+* Rückblickend konnten wir unser Verständnis für strukturierte Programmierung in Python deutlich erweitern.
+* Die iterative Umsetzung der User-Stories hat uns geholfen, die gelernte Theorie auf ein praktisches Beispiel anzuwenden.
+* Die von den Dozenten zu Beginn erwähnte Geduld, die es beim Lernen von Programmieren benötigt, hat sich ausbezahlt. Zu Beginn wirkte alles sehr abstrakt und durch viel Üben und direktes Umsetzen konnten wir uns einen Gesamt-Überblick über das gesamte Thema verschaffen.
 
 
 # 5. Anhang
