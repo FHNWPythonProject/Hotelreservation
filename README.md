@@ -11,7 +11,7 @@ Die Arbeit erfolgte in einer vierköpfigen Projektgruppe. Neben der technischen 
 | Elena Pineider | Gesamtüberblick, Dokumentation README, Umsetzung User Stories |
 
 # 2. Projektmanagement und Vorgehen
-Das Projekt wurde in vier Sprints eingeteilt, welche an die Unterrichtseinheiten angpasst waren. Für die Umsetzung des Projekts haben wir eine Vorgehensweise in Anlehnung an Scrum gewählt. Der theoretisch vermittelte Unterrichtsstoff wurde jeweils direkt im Anschluss auf unser Projekt übertragen. Da eine neue Programmiersprache zu lernen viel Zeit und auch Geduld abverlangt, haben wir uns stark vorgenommen, dass die einzelnen Gruppenmitglieder das Programmieren jeweils im Selbststudium üben. So hatten wir vor Ort jeweils mehr Zeit für unser Projekt als Gruppe, wo Probleme und Schwierigkeiten gemeinsam disskutiert werden konnten. 
+Das Projekt wurde in vier Sprints eingeteilt, welche an die Unterrichtseinheiten angepasst waren. Für die Umsetzung des Projekts haben wir eine Vorgehensweise in Anlehnung an Scrum gewählt. Der theoretisch vermittelte Unterrichtsstoff wurde jeweils direkt im Anschluss auf unser Projekt übertragen. Da eine neue Programmiersprache zu lernen viel Zeit und auch Geduld abverlangt, haben wir uns stark vorgenommen, dass die einzelnen Gruppenmitglieder das Programmieren jeweils im Selbststudium üben. So hatten wir vor Ort jeweils mehr Zeit für unser Projekt als Gruppe, wo Probleme und Schwierigkeiten gemeinsam diskutiert werden konnten. 
 
 ## 2.1 Tools und Technologien
 Zur Umsetzung des gesamten Projekts wurden folgende Tools verwendet:
