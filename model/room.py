@@ -8,69 +8,57 @@ if TYPE_CHECKING:
 
 
 class Room:
-    def __init__(self, room_id, room_number, price_per_night, hotel_id, max_guests, room_type):
+    def __init__(
+        self,
+        room_id: int,
+        room_number: str,
+        price_per_night: float,
+        hotel_id: int,
+        room_type: RoomType = None
+    ):
         self.room_id = room_id
-        self.room_number = room_number
-        self.price_per_night = price_per_night
+        self._room_number = room_number
+        self._price_per_night = price_per_night
         self.hotel_id = hotel_id
-        self.max_guests = max_guests
-        self.room_type = room_type
-
-
+        self._room_type = room_type
+        self._bookings: list[Booking] = []
 
     def __repr__(self):
-        # kurze Textdarstellung des Zimmers
-        return f"Room(no={self.__room_no}, price={self.__price_per_night})"
+        return f"Room(no={self._room_number}, price={self._price_per_night})"
 
     @property
-    def room_no(self) -> int:
-        return self.__room_no
+    def room_number(self) -> str:
+        return self._room_number
 
     @property
     def price_per_night(self) -> float:
-        return self.__price_per_night
+        return self._price_per_night
 
     @price_per_night.setter
     def price_per_night(self, price: float):
-        # setzt neuen Zimmerpreis, muss gültig sein
         if not isinstance(price, (int, float)) or price <= 0:
             raise ValueError("price must be a positive number")
-        self.__price_per_night = price
-
-    @property
-    def hotel(self) -> Hotel:
-        return self.__hotel
-
-    @hotel.setter
-    def hotel(self, hotel: Hotel):
-        from model import Hotel
-        if hotel is not None and not isinstance(hotel, Hotel):
-            raise ValueError("hotel must be an instance of Hotel")
-        self.__hotel = hotel
+        self._price_per_night = price
 
     @property
     def room_type(self) -> RoomType:
-        return self.__room_type
+        return self._room_type
 
     @room_type.setter
     def room_type(self, room_type: RoomType):
-        from model import RoomType
+        from model.room_type import RoomType
         if room_type is not None and not isinstance(room_type, RoomType):
             raise ValueError("room_type must be an instance of RoomType")
-        self.__room_type = room_type
+        self._room_type = room_type
 
     @property
     def bookings(self) -> list[Booking]:
-        # gibt eine Kopie der Buchungsliste zurück
-        return self.__bookings.copy()
+        return self._bookings.copy()
 
     def add_booking(self, booking: Booking):
-        # fügt dem Zimmer eine Buchung hinzu, falls noch nicht vorhanden
-        from model import Booking
-        if not booking:
-            raise ValueError("booking is required")
+        from model.booking import Booking
         if not isinstance(booking, Booking):
-            raise ValueError("booking must be an instance of Booking")
-        if booking not in self.__bookings:
-            self.__bookings.append(booking)
-            booking.room = self  # Rückverknüpfung setzen
+            raise ValueError("booking must be a Booking instance")
+        if booking not in self._bookings:
+            self._bookings.append(booking)
+            booking.room = self  # Rückverknüpfung

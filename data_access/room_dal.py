@@ -31,7 +31,7 @@ class RoomDAL(BaseDal):
     def read_rooms_by_city_and_guest_count(self, city: str, guest_count: int) -> list[Room]:
         sql = """
         SELECT r.room_id, r.room_number, r.price_per_night, r.hotel_id,
-               rt.type_id, rt.max_guests, rt.description
+            rt.type_id, rt.max_guests, rt.description
         FROM Room r
         JOIN Room_Type rt ON r.type_id = rt.type_id
         JOIN Hotel h ON r.hotel_id = h.hotel_id
@@ -45,10 +45,15 @@ class RoomDAL(BaseDal):
                 room_number=row[1],
                 price_per_night=row[2],
                 hotel_id=row[3],
-                max_guests=row[5],
-                room_type=RoomType(type_id=row[4], description=row[6])
-            ) for row in rows
+                room_type=RoomType(
+                    type_id=row[4],
+                    max_guests=row[5],
+                    description=row[6]
+                )
+            )
+            for row in rows
         ]
+
 
     def read_rooms_by_city_guest_count_stars_and_availability(self, city, guest_count, min_stars, checkin, checkout):
         sql = """
