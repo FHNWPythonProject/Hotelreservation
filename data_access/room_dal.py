@@ -155,3 +155,28 @@ class RoomDAL(BaseDal):
         GROUP BY r.room_id
         """
         return self.fetchall(sql)
+
+    def read_available_rooms_by_type_and_date(self, room_type_description: str, checkin, checkout) -> list[Room]:
+        sql = """
+        SELECT r.room_id, r.room_number, r.price_per_night, r.hotel_id,
+            rt.type_id, rt.max_guests, rt.description
+        FROM Room r
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        WHERE rt.description = ?
+        AND r.room_id NOT IN (
+            SELECT room_id FROM Booking
+            WHERE NOT (check_out_date <= ? OR check_in_date >= ?)
+        )
+        """
+        rows = self.fetchall(sql, (room_type_description, checkin, checkout))
+        return [
+            Room(
+                room_id=row[0],
+                room_number=row[1],
+                price_per_night=row[2],
+                hotel_id=row[3],
+                max_guests=row[5],
+                room_type=RoomType(type_id=row[4], max_guests=row[5], description=row[6])
+            )
+            for row in rows
+        ]

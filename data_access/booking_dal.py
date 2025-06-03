@@ -77,6 +77,12 @@ class BookingDAL(BaseDal):
         ORDER BY b.check_in_date DESC
         """
         return self.fetchall(sql)
+
+    
+    def delete_booking_by_id(self, booking_id: int) -> bool:
+        sql = "DELETE FROM Booking WHERE booking_id = ?"
+        _, rowcount = self.execute(sql, (booking_id,))
+        return rowcount > 0
         
 
     def update_phone_number(self, booking_id: int, phone_number: str) -> None:

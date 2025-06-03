@@ -12,17 +12,21 @@ class InvoiceDAL(BaseDal):
         last_id, _ = self.execute(sql, params)
         return last_id
 
-    def read_invoice_by_id(self, invoice_id: int) -> Invoice | None:
+    def read_invoice_by_booking_id(self, booking_id: int) -> Invoice | None:
         sql = """
-        SELECT InvoiceId, Booking_Id, Total_Amount
+        SELECT invoice_id, booking_id, total_amount
         FROM Invoice
-        WHERE Invoice_Id = ?
+        WHERE booking_id = ?
         """
-        result = self.fetchone(sql, (invoice_id,))
-        if result:
-            return Invoice(
-                invoice_id=result[0],
-                booking_id=result[1],
-                total_amount=result[2],
-            )
+        row = self.fetchone(sql, (booking_id,))
+        if row:
+            return Invoice(invoice_id=row[0], booking_id=row[1], total_amount=row[2])
         return None
+
+  
+    def delete_invoice(self, invoice_id: int):
+        sql = "DELETE FROM Invoice WHERE invoice_id = ?"
+        self.execute(sql, (invoice_id,))
+
+
+

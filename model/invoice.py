@@ -1,24 +1,11 @@
 from datetime import date
 
 class Invoice:
-    # Konstruktor: erstellt ein neues Rechnungsobjekt
-    def __init__(self, invoice_id: int, issue_date: date, total_amount: float):
-        # ID muss ein Integer sein
-        if not isinstance(invoice_id, int):
-            raise ValueError("invoice_id must be an integer")
+    def __init__(self, invoice_id: int, booking_id: int, total_amount: float):
+        self.__invoice_id = invoice_id
+        self.booking_id = booking_id
+        self.total_amount = total_amount
 
-        # issue_date muss ein gültiges Datum sein
-        if not isinstance(issue_date, date):
-            raise ValueError("issue_date must be a date object")
-
-        # Gesamtbetrag muss ein positiver Float oder Integer sein
-        if not isinstance(total_amount, (int, float)) or total_amount <= 0:
-            raise ValueError("total_amount must be a positive number")
-
-        # Attribute setzen (alle privat, d. h. mit __)
-        self.__invoice_id: int = invoice_id                # eindeutige Rechnungsnummer
-        self.__issue_date: date = issue_date               # Ausstellungsdatum der Rechnung
-        self.__total_amount: float = total_amount          # Betrag in € / CHF / etc.
 
     def __repr__(self):
         # Repräsentation zur besseren Lesbarkeit beim Debugging oder Drucken
