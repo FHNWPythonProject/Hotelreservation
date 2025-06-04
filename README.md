@@ -6,7 +6,7 @@ Die Arbeit erfolgte in einer vierköpfigen Projektgruppe. Neben der technischen 
 | Name           | Rolle im Projekt                          |
 |----------------|--------------------------------------------|
 | Janis Oldani   | Implementierung User Stories in Business Logic, Umsetzung User Stories     |
-| Dominik Bär    | Aufbau Klassenstruktur in Deepnote, Umsetzung User Stories  |
+| Dominik Bär    | Sprintplanung, Aufbau Klassenstruktur in Deepnote, Umsetzung User Stories  |
 | Laurin Möck    | Setup und Pflege des Github-Repos, Umsetzung User Stories |
 | Elena Pineider | Gesamtüberblick, Dokumentation README, Umsetzung User Stories |
 
