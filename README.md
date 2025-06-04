@@ -92,8 +92,9 @@ Neben der Teamarbeit konnten wir im Rahmen des Moduls konkrete fachliche und tec
 # 5. Anhang
 ## 5.1 Miro Board Sprints
 ![Miro Board Sprint 1](images/MB_Sprint1.png)
-![Mir Board Sprint 2](images/MB_Sprint2.png)
-![Mir Board Sprint 3](images/MB_Sprint3.png)
+![Miro Board Sprint 2](images/MB_Sprint2.png)
+![Miro Board Sprint 3](images/MB_Sprint3.png)
+![Miro Board Sprint 4](images/MB_Sprint4.png)
 
 
 
