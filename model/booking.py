@@ -16,26 +16,13 @@ class Booking:
     def booking_id(self):
         return self._booking_id
 
-    @booking_id.setter
-    def booking_id(self, value):
-        self._booking_id = value
-
-    # ===================================
     @property
     def guest_id(self):
         return self._guest_id
 
-    @guest_id.setter
-    def guest_id(self, value):
-        self._guest_id = value
-
     @property
     def room_id(self):
         return self._room_id
-
-    @room_id.setter
-    def room_id(self, value):
-        self._room_id = value
 
     @property
     def checkin_date(self):
