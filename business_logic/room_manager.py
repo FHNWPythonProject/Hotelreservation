@@ -1,5 +1,7 @@
 from data_access.room_dal import RoomDAL
 from model.room import Room
+from model.room_type import RoomType
+from model.hotel import Hotel
 from datetime import date
 
 
@@ -41,4 +43,7 @@ class RoomManager:
     
     def update_price(self, room_id: int, new_price: float):
         self.room_dal.update_price(room_id, new_price)
+
+    def get_room_details_with_facilities(self):
+        return self.room_dal.read_room_details_with_facilities()
 

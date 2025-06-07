@@ -22,6 +22,7 @@ class Room:
         self.hotel_id = hotel_id
         self._room_type = room_type
         self._bookings: list[Booking] = []
+        self.facilities = []
 
     def __repr__(self):
         return f"Room(no={self._room_number}, price={self._price_per_night})"

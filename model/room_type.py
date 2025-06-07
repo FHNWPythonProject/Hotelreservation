@@ -4,16 +4,10 @@ class RoomType:
         self._description = description
         self._max_guests = max_guests
 
-    # === Getter & Setter für type_id ===
+    # === Getter für type_id ===
     @property
     def type_id(self) -> int:
         return self._type_id
-
-    @type_id.setter
-    def type_id(self, value: int):
-        if not isinstance(value, int):
-            raise ValueError("type_id must be an integer")
-        self._type_id = value
 
     # === Getter & Setter für description ===
     @property

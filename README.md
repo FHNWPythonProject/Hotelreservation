@@ -98,6 +98,11 @@ Diese Struktur sorgt für:
 - Saubere **Trennung von Zuständigkeiten**
 - Einfache Wiederverwendung von Komponenten (z. B. Input-Funktionen, Manager-Logik)
 
+## 4.5 Disclaimer
+
+Es kann sehr gut sein, dass es Codes in den verschiedenen Layers hat, die wir gar nie verwenden. Der Grund dafür ist, dass vier verschiedene Personen am Projekt gearbeitet haben. Es wurden immer neue Code hinzugefügt,
+bearbeitet und gelöscht. Wir haben versucht am Schluss alles zu bereinigen, also den überflüssigen Code zu entfernen. Aber wie gesagt, es kann sein das wir einige übersehen haben.
+
 
 # 5. Main Learnings und Reflexion
 In den folgenden beiden Abschnitten möchten wir unsere Main Learnings aufzeigen. Dabei unterscheiden wir unsere Learnings auf Teamzusammenarbeit und fachliche Kenntnisse.

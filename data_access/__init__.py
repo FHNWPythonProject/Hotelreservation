@@ -21,6 +21,5 @@ from .room_type_dal import RoomTypeDAL
 from .booking_dal import BookingDAL
 from .invoice_dal import InvoiceDAL
 from .facilities_dal import FacilitiesDAL
-from .room_facilities_dal import RoomFacilitiesDAL
 from .address_dal import AddressDAL
-from .base_dal import BaseDal  # falls benötigt
+from .base_dal import BaseDal 
