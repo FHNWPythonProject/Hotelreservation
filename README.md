@@ -2,6 +2,9 @@
 Dieses Projekt wurde im Rahmen des Moduls „Anwendungsentwicklung mit Python“ im Frühlingssemester 2025 an der FHNW umgesetzt. Ziel war es, ein funktionales Hotelreservierungssystem zu entwickeln, welches Konzepte der Python-Programmierung abbildet. Darunter objektorientierte Programmierung, Datenbankzugriffe mit SQLite sowie die Umsetzung und Dokumentation der User Stories.
 Die Arbeit erfolgte in einer vierköpfigen Projektgruppe. Neben der technischen Umsetzung stand auch das Arbeiten mit Entwicklungsumgebungen (Deepnote, GitHub) und die projektbezogene Zusammenarbeit im Fokus. Während dem Projekt wurden wir eng durch unsere Coaches begleitet. 
 
+# Link zum Deepnote: 
+https://deepnote.com/workspace/Dominik-Bar-c95462c2-baed-4902-a431-0d0d54cab5b5/project/B-5-Team-35747444-b2f0-4594-a34e-6130808b5b2c/notebook/Hotelreservation-fcdd74abd60f4b998a596d27d6cf69b5
+
 # 1. Autoren und Rollen im Projekt
 | Name           | Rolle im Projekt                          |
 |----------------|--------------------------------------------|
