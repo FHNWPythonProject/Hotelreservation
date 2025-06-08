@@ -5,6 +5,40 @@ Die Arbeit erfolgte in einer vierköpfigen Projektgruppe. Neben der technischen 
 # Link zum Deepnote: 
 https://deepnote.com/workspace/Dominik-Bar-c95462c2-baed-4902-a431-0d0d54cab5b5/project/B-5-Team-35747444-b2f0-4594-a34e-6130808b5b2c/notebook/Hotelreservation-fcdd74abd60f4b998a596d27d6cf69b5
 
+## Anleitung Ausführung der Notebooks
+Bevor mit der Umsetzung der User Stories begonnen werden kann, müssen die ersten vier Blöcke in der angegebenen Reihenfolge ausgeführt werden:
+
+* Arbeitsdatenbank vorbereiten 
+  * Zunächst wird die Originaldatenbank (`hotel_reservation_sample.db`) in eine Arbeitskopie (`working_db.db`) kopiert.  
+  * Zudem wird die Umgebungsvariable `DB_FILE` gesetzt, sodass alle Datenbankoperationen auf der Arbeitskopie ausgeführt werden und die Originaldatenbank unverändert bleibt.
+
+* Module Importieren
+  * Anschließend werden alle wichtigen Module geladen, wie:
+    * `model` (Datenmodelle für Gäste, Zimmer, Buchungen),
+    * `data_access` (Datenzugriffsschicht),
+    * `business_logic` (Geschäftslogik),
+    * `input_helper` (Hilfsfunktionen für Benutzereingaben).  
+  * Dadurch stehen alle benötigten Klassen und Funktionen zur Verfügung.
+
+* Manager-Objekte instanziieren
+  * Danach werden Instanzen der wichtigsten Verwaltungsobjekte erstellt, z.B.:
+    * `BookingManager` für Buchungen,
+    * `GuestManager` für Gästeinformationen,
+    * `HotelManager` für Hoteldaten,
+    * `InvoiceManager` für Rechnungen,
+    * `RoomManager` für Zimmerverwaltung,
+    * `FacilitiesManager` für Hoteleinrichtungen,
+    * `RoomTypeManager` für Zimmertypen.  
+  * Diese Objekte werden später in den User Stories für die Datenverwaltung benötigt.
+
+* Pandas Anzeigeoptionen
+  * Optional können die Anzeigeoptionen von `pandas` angepasst werden, damit DataFrames vollständig angezeigt werden (alle Zeilen, alle Spalten, keine Begrenzung der Spaltenbreite).
+
+* Wichtig 
+  * Diese vorbereitenden Blöcke müssen **immer zuerst ausgeführt werden**, um eine fehlerfreie Ausführung des Notebooks zu gewährleisten.  
+  * Erst danach sollte mit der Umsetzung der User Stories begonnen werden.
+
+
 # 1. Autoren und Rollen im Projekt
 | Name           | Rolle im Projekt                          |
 |----------------|--------------------------------------------|
