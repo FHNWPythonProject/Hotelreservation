@@ -1,5 +1,6 @@
 def get_city_from_user():
-    return input(" Bitte Stadt eingeben: ")
+    city = input("Bitte Stadt eingeben: ")
+    return city.capitalize()
 
 def get_min_stars_from_user() -> int:
     while True:
