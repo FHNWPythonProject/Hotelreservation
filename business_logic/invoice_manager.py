@@ -6,6 +6,8 @@ from model.invoice import Invoice
 class InvoiceManager:
     def __init__(self):
         self.invoice_dal = InvoiceDAL()
+        self.booking_dal = BookingDAL()
+        self.room_dal = RoomDAL()
 
     def read_invoice_by_booking_id(self, booking_id: int) -> Invoice | None:
         return self.invoice_dal.read_invoice_by_booking_id(booking_id)

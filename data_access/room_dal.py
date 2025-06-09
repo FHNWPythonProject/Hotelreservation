@@ -194,7 +194,6 @@ class RoomDAL(BaseDal):
                 room_number=row[1],
                 price_per_night=row[2],
                 hotel_id=row[3],
-                max_guests=row[5],
                 room_type=RoomType(type_id=row[4], max_guests=row[5], description=row[6])
             )
             for row in rows

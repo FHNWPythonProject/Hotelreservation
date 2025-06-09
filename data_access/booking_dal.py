@@ -89,3 +89,16 @@ class BookingDAL(BaseDal):
         # Aktualisiert die Telefonnummer einer Buchung.
         sql = "UPDATE Booking SET PhoneNumber = ? WHERE BookingId = ?"
         self.execute(sql, (phone_number, booking_id))
+
+    def read_bookings_by_hotel_with_room_type(self, hotel_id: int):
+        sql = """
+        SELECT rt.description
+        FROM Booking b
+        JOIN Room r ON b.room_id = r.room_id
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        WHERE r.hotel_id = ?
+        """
+        rows = self.fetchall(sql, (hotel_id,))
+        return [row[0] for row in rows]
+
+

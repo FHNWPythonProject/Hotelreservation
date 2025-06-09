@@ -39,7 +39,7 @@ class RoomManager:
         return rooms
 
     def get_rooms_with_facilities(self):
-        return self.room_dal.read_rooms_with_facilities()
+        return self.room_dal.read_room_details_with_facilities()
     
     def update_price(self, room_id: int, new_price: float):
         self.room_dal.update_price(room_id, new_price)

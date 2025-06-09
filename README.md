@@ -140,6 +140,9 @@ Diese Struktur sorgt für:
 Es kann sehr gut sein, dass es Codes in den verschiedenen Layers hat, die wir gar nie verwenden. Der Grund dafür ist, dass vier verschiedene Personen am Projekt gearbeitet haben. Es wurden immer neue Code hinzugefügt,
 bearbeitet und gelöscht. Wir haben versucht am Schluss alles zu bereinigen, also den überflüssigen Code zu entfernen. Aber wie gesagt, es kann sein das wir einige übersehen haben.
 
+Bei Admin User Stories z.B. Ich möchte ein Hotel entfernen oder bearbeiten, haben wir beim input mit HotelID gearbeitet anstatt mit Hotelname, da die Hotels sehr lange Namen haben und so muss man nicht immer den langen Hotelnamen eingeben sondern nur die kurze ID.
+Ausserdem haben wir uns überlegt, der Admin kennt wahrscheinlich die verschiedenen HotelIDs. Bei den Gast User Stories haben wir das versucht zu vermeiden, denn der Gast kennt z.B. die HotelIDs nicht.
+
 
 # 5. Main Learnings und Reflexion
 In den folgenden beiden Abschnitten möchten wir unsere Main Learnings aufzeigen. Dabei unterscheiden wir unsere Learnings auf Teamzusammenarbeit und fachliche Kenntnisse.

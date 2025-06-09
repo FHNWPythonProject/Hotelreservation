@@ -32,9 +32,24 @@ def get_guest_count_from_user() -> int:
 
 def get_checkin_checkout_dates():
     from datetime import datetime
-    checkin = input(" Check-in-Datum (YYYY-MM-DD): ")
-    checkout = input(" Check-out-Datum (YYYY-MM-DD): ")
-    return datetime.strptime(checkin, "%Y-%m-%d"), datetime.strptime(checkout, "%Y-%m-%d")
+
+    while True:
+        try:
+            checkin_str = input("Check-in-Datum (YYYY-MM-DD): ")
+            checkin = datetime.strptime(checkin_str, "%Y-%m-%d")
+            
+            checkout_str = input("Check-out-Datum (YYYY-MM-DD): ")
+            checkout = datetime.strptime(checkout_str, "%Y-%m-%d")
+            
+            if checkout <= checkin:
+                print("Fehler: Check-out-Datum muss nach dem Check-in-Datum liegen.")
+                continue
+            
+            return checkin, checkout
+
+        except ValueError:
+            print("Fehler: Bitte gib das Datum im Format YYYY-MM-DD ein.")
+
 
 def get_hotel_name():
     return input(" Neuer Hotelname eingeben: ")
